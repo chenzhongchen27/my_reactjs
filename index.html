@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>reactjs练习</title>
+	<script src="./resource/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="./MyReact.js"></script>
+</head>
+<body>
+	<div id="container"></div>
+	<script type="text/javascript">
+	var CustomComponent = React.createClass({
+		getInitialState:function(){
+			return {oneState:'statestate: '}
+		},
+		componentWillMount:function(){
+			console.log('将要渲染...')
+		},
+		componentDidMount:function(){
+			console.log('渲染完成！！')
+		},
+		render:function(){
+			return React.createElement("div",null,this.state.oneState,"to div prop",this.props.oneProp)
+		}
+
+	})
+	var element = React.createElement(CustomComponent,{
+		oneProp:'proppropprop'
+	},'click')
+	React.render(element,document.getElementById('container'))
+
+
+/*
+ *这是运用createElement渲染浏览器本身支持的元素
+ *
+	
+
+	function sayHello(){
+			alert('hello')
+		}
+		var element = React.createElement('div',{
+			id:'test'
+			,onClick:sayHello
+		},'click')
+		React.render(element,document.getElementById('container'))*/
+	</script>
+</body>
+</html>
