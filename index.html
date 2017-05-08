@@ -9,7 +9,37 @@
 <body>
 	<div id="container"></div>
 	<script type="text/javascript">
-	var CustomComponent = React.createClass({
+	var TodoList = React.createClass({
+		  getInitialState: function() {
+		    return {items: ['one','two']};
+		  },
+		  add:function(){
+		    var nextItems = this.state.items.concat([this.state.text]);
+		    this.setState({items: nextItems, text: ''});
+		  },
+		  onChange: function(e) {
+		    this.setState({text: e.target.value});
+		  },
+		  render: function() {
+		    var createItem = function(itemText) {
+		      return React.createElement("div", null, itemText);
+		    };
+
+		    var lists = this.state.items.map(createItem);
+		    var input = React.createElement("input", {onKeyup: this.onChange.bind(this),value: this.state.text,autofocus:"autofocus"});
+		    var button = React.createElement("p", {onClick: this.add.bind(this)}, 'Add#' + (this.state.items.length + 1))
+		    var children = lists.concat([input,button])
+
+		    return React.createElement("div", null,children);
+		  }
+		});
+
+
+		React.render(React.createElement(TodoList), document.getElementById("container"));
+
+/*
+	//调试setState时所用
+ 	var CustomComponent = React.createClass({
 		getInitialState:function(){
 			return {oneState:'statestate: '}
 		},
@@ -19,8 +49,11 @@
 		componentDidMount:function(){
 			console.log('渲染完成！！')
 		},
+		changeOneState:function(){
+			this.setState({oneState:'STATESTAET'})
+		},
 		render:function(){
-			return React.createElement("div",null,this.state.oneState,"to div prop",this.props.oneProp)
+			return React.createElement("div",{onClick:this.changeOneState.bind(this)},this.state.oneState,"to div prop",this.props.oneProp)
 		}
 
 	})
@@ -28,7 +61,7 @@
 		oneProp:'proppropprop'
 	},'click')
 	React.render(element,document.getElementById('container'))
-
+*/
 
 /*
  *这是运用createElement渲染浏览器本身支持的元素
