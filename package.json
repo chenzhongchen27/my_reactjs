@@ -4,7 +4,7 @@
   "description": "",
   "main": "MyReact.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": " browser-sync start --server --files *"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +17,7 @@
     "babel-preset-stage-3": "^6.24.1"
   },
   "dependencies": {
-    "babel-core": "^6.24.1"
+    "babel-core": "^6.24.1",
+    "browser-sync": "^2.23.6"
   }
 }
